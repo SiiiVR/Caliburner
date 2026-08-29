@@ -1,0 +1,7 @@
+{
+  "width": 1024,
+  "height": 768,
+  "targetFPS": 120,
+  "fullscreen": false,
+  "initialLevel": "test"
+}

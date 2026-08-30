@@ -69,10 +69,6 @@ add_executable(
 		${PROJECT_NAME}
 		${GAME_SOURCES}
 		${GAME_HEADERS}
-		src/level.cpp
-		src/level.hpp
-		src/gridCoord.hpp
-		src/terrain.hpp
 )
 
 target_include_directories(

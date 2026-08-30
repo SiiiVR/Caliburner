@@ -3,26 +3,25 @@
 //
 #include <fstream>
 #include <format>
-#include <nlohmann/json.hpp>
+#include "json.hpp"
 #include "level.hpp"
 #include <iostream>
 #include <unordered_map>
 
-using json = nlohmann::json;
-
 Level::Level(std::string const& levelName)
 {
-	const std::string location = std::format("assets/levels/{}.json", levelName);
-	std::ifstream f(location);
-	json config = json::parse(f);
+	std::ifstream f("assets/settings.json");
+	json config = json::parse(f, nullptr, false);
 
-	//Do type checking
+	config = config.is_discarded() ? json::object() : config;
+
+
 	m_name = levelName;
-	m_version = config["version"].get<std::string>();
-	m_description = config["description"].get<std::string>();
-	m_author = config["author"].get<std::string>();
-	m_maxPlayers = config["maxPlayers"].get<uint8_t>();
-	m_gameMode = config["gameMode"].get<GameMode>();
+	m_version = json_getOrDefault<std::string>(config, "version", "Unknown");
+	m_description = json_getOrDefault<std::string>(config, "description", "");
+	m_author = json_getOrDefault<std::string>(config, "author", "A conspicuous fellow.");
+	m_maxPlayers = json_getOrDefault<uint8_t>(config, "maxPlayers", 0);
+	m_gameMode = json_getOrDefault<GameMode>(config, "gameMode", GameMode::Kerfuffle);
 
 	auto terrainPieces = config["terrain"];
 

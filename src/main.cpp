@@ -1,12 +1,11 @@
 #include <fstream>
-#include <nlohmann/json.hpp>
 #include <raylib.h>
 #include <string>
 
+#include "json.hpp"
 #include "level.hpp"
 
 using json = nlohmann::json;
-
 
 int main()
 {
@@ -16,13 +15,13 @@ int main()
 
 	config = config.is_discarded() ? json::object() : config;
 
-	const int   width = config.value<int>("width", 800),
-	            height = config.value<int>("height", 600),
-	            targetFPS = config.value<int>("targetFPS", 60);
+	const int   width = json_getOrDefault<int>(config, "width", 800),
+	            height = json_getOrDefault<int>(config, "height", 600),
+	            targetFPS = json_getOrDefault<int>(config, "targetFPS", 60);
 
 	InitWindow(width, height, "Caliburner");
 
-	Level* currentLevel = new Level(config["initialLevel"].get<std::string>());
+	Level* currentLevel = new Level(json_getOrDefault<std::string>(config, "initialLevel", "test"));
 
 	SetTargetFPS(targetFPS);
 

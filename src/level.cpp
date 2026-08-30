@@ -10,7 +10,8 @@
 
 Level::Level(std::string const& levelName)
 {
-	std::ifstream f("assets/settings.json");
+	std::string path = std::format("assets/levels/{}.json", levelName);
+	std::ifstream f(path);
 	json config = json::parse(f, nullptr, false);
 
 	config = config.is_discarded() ? json::object() : config;

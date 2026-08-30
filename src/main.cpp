@@ -7,32 +7,36 @@
 
 using json = nlohmann::json;
 
+
 int main()
 {
-    std::ifstream f("assets/settings.json");
-    json config = json::parse(f);
 
-    int width = config["width"].get<int>();
-    int height = config["height"].get<int>();
-    int targetFPS = config["targetFPS"].get<int>();
+	std::ifstream f("assets/settings.json");
+	json config = json::parse(f, nullptr, false);
 
-    InitWindow(width, height, "Caliburner");
+	config = config.is_discarded() ? json::object() : config;
 
-    Level* currentLevel = new Level(config["initialLevel"].get<std::string>());
+	const int   width = config.value<int>("width", 800),
+	            height = config.value<int>("height", 600),
+	            targetFPS = config.value<int>("targetFPS", 60);
 
-    SetTargetFPS(targetFPS);
+	InitWindow(width, height, "Caliburner");
 
-    while (!WindowShouldClose())
-    {
-        BeginDrawing();
-        ClearBackground(BLACK);
+	Level* currentLevel = new Level(config["initialLevel"].get<std::string>());
 
-        currentLevel->Render();
+	SetTargetFPS(targetFPS);
 
-        EndDrawing();
-    }
+	while (!WindowShouldClose())
+	{
+		BeginDrawing();
+		ClearBackground(BLACK);
 
-    if (currentLevel) delete currentLevel;
+		currentLevel->Render();
 
-    return 0;
+		EndDrawing();
+	}
+
+	if (currentLevel) delete currentLevel;
+
+	return 0;
 }

@@ -8,7 +8,7 @@
 
 struct Terrain
 {
-    std::string terrainType;
+	std::string terrainType;
 };
 
 #endif //CALIBURNER_TERRAIN_HPP

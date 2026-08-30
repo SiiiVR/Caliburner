@@ -18,19 +18,19 @@ NLOHMANN_JSON_SERIALIZE_ENUM(GameMode, {
 class Level
 {
 public:
-    Level(std::string const &levelName);
-    ~Level();
-    void Render();
+	Level(std::string const &levelName);
+	~Level();
+	void Render();
 private:
 //Meta data
-    std::string m_name;
-    std::string m_description;
-    std::string m_version;
-    std::string m_author;
-    uint8_t m_maxPlayers;
-    GameMode m_gameMode;
+	std::string m_name;
+	std::string m_description;
+	std::string m_version;
+	std::string m_author;
+	uint8_t m_maxPlayers;
+	GameMode m_gameMode;
 //Map data
-    std::unordered_map<GridCoord, Terrain, GridCoordHash> m_terrain;
+	std::unordered_map<GridCoord, Terrain, GridCoordHash> m_terrain;
 };
 
 

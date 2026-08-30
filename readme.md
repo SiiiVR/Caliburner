@@ -1,6 +1,10 @@
 # Caliburner
 Isometric 2d turn based strategy game
 medieval science-fantasy setting
+
+## name
+
+## ideas list
 - 2.5d isometric fake 3d terrain rollercoaster tycoon style but using pre drawn sprite blocks
 - ONLY DWARFS NO HUMANS
 - Weapons

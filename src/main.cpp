@@ -3,7 +3,8 @@
 #include <string>
 
 #include "json.hpp"
-#include "level.hpp"
+#include "scene.hpp"
+#include "ScenarioBuilder/sceneBuilder.hpp"
 
 using json = nlohmann::json;
 
@@ -21,21 +22,18 @@ int main()
 
 	InitWindow(width, height, "Caliburner");
 
-	Level* currentLevel = new Level(json_getOrDefault<std::string>(config, "initialLevel", "test"));
-
 	SetTargetFPS(targetFPS);
+
+	Scene* scene = new SceneBuilder();
 
 	while (!WindowShouldClose())
 	{
 		BeginDrawing();
 		ClearBackground(BLACK);
 
-		currentLevel->Render();
 
 		EndDrawing();
 	}
-
-	if (currentLevel) delete currentLevel;
 
 	return 0;
 }

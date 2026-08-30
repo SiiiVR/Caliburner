@@ -1,3 +1,6 @@
 {
-  "dwarf": "dwarf"
+	"dwarf": "Dwarf",
+	"terrain": {
+		"stone": "Stone"
+	}
 }

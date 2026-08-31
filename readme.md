@@ -7,7 +7,7 @@ written in C++
 Caliburn is a name for excalibur so the name is a mix of excalibur and afterburner
 
 ## ideas list
-- 2.5d isometric fake 3d terrain rollercoaster tycoon style but using pre drawn sprite blocks
+- 2.5d isometric fake 3d terrain rollercoaster tycoon style but marching cubes and dithering between terrain types
 - ONLY DWARFS NO HUMANS
 - Weapons
     - Flying ROCKET SWORDS

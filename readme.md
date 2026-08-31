@@ -1,8 +1,10 @@
 # Caliburner
 Isometric 2d turn based strategy game
 medieval science-fantasy setting
+written in C++
 
-## name
+## Name
+Caliburn is a name for excalibur so the name is a mix of excalibur and afterburner
 
 ## ideas list
 - 2.5d isometric fake 3d terrain rollercoaster tycoon style but using pre drawn sprite blocks
@@ -45,5 +47,6 @@ medieval science-fantasy setting
     - Lead beans (They have a cult around them [LEADED BEANS])
     - Gun flower (flowers that produce gun powder)
     - Tea Leafs (tin leafs)
-      in C++
-
+- Caliburner ultimate weapon, its the one truely magical artefact in the world, strapped to a rocket.
+  - After much debate verable high pontiff Flux beard both blessed and aproved the modification of caliburner by adding a rocket to it
+    - Reason was as follows: Sword wasn't fast enough

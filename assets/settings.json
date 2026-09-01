@@ -3,5 +3,5 @@
   "height": 768,
   "targetFPS": 120,
   "fullscreen": false,
-  "initialLevel": "test"
+  "showFPS": true
 }

@@ -24,6 +24,7 @@ Caliburn is a name for excalibur so the name is a mix of excalibur and afterburn
 - Modes
   - kerfuffle (1v1) (skirmish mode is a barbrawl)
   - Embark on Legend (objective based campaign mode)
+  - Lord of the Vault (Try to take as many of the objective resources, first team to reach the treshold wins)
 - Chariot harvesters (resource collection mechanic?)
 - Space piracy
 - Space mercs
@@ -50,3 +51,6 @@ Caliburn is a name for excalibur so the name is a mix of excalibur and afterburn
 - Caliburner ultimate weapon, its the one truely magical artefact in the world, strapped to a rocket.
   - After much debate verable high pontiff Flux beard both blessed and aproved the modification of caliburner by adding a rocket to it
     - Reason was as follows: Sword wasn't fast enough
+- Everytime the turn starts / ends a random funny sfx gets played
+  - If you ran away from a fight you get a chicken sfx
+    - What if its all based on last turn interactions?

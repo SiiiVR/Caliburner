@@ -9,8 +9,9 @@
 class Scene
 {
 public:
-	virtual ~Scene() = default;
+	virtual ~Scene() = 0;
 	virtual void Render() = 0;
+	virtual void RenderUI() = 0;
 };
 
 

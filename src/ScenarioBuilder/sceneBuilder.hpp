@@ -14,13 +14,17 @@ class SceneBuilder : public Scene
 {
 public:
 	SceneBuilder(uint64_t width, uint64_t height, uint64_t depth);
-	~SceneBuilder() override;
+	~SceneBuilder();
 
 	void Render() override;
 	void RenderUI() override;
 private:
-	list<Texture2D> m_terrainTextures;
-	Texture2D** m_terrainPoints;
+	Model m_model{};
+	Model m_worldFloor{};
+	Texture2D* m_terrainTextures;
+	size_t m_terrainTextures_count;
+	size_t* m_terrainPoints;
+
 	uint64_t m_width;
 	uint64_t m_height;
 	uint64_t m_depth;

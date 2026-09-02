@@ -32,7 +32,7 @@ int main()
 		CAMERA_ORTHOGRAPHIC
 	};
 
-	Scene* scene = new SceneBuilder(512, 512, 512);
+	Scene* scene = new SceneBuilder(10, 10, 10);
 
 	while (!WindowShouldClose())
 	{

@@ -13,7 +13,7 @@ using std::list;
 class SceneBuilder : public Scene
 {
 public:
-	SceneBuilder(uint64_t width, uint64_t height, uint64_t depth);
+	SceneBuilder(uint32_t width, uint32_t height, uint32_t depth);
 	~SceneBuilder();
 
 	void Render() override;

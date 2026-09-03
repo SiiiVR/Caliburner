@@ -7,7 +7,7 @@
 
 namespace fs = std::filesystem;
 
-SceneBuilder::SceneBuilder(uint64_t width, uint64_t height, uint64_t depth)
+SceneBuilder::SceneBuilder(uint32_t width, uint32_t height, uint32_t depth)
 {
 	size_t counter = 0;
 
@@ -40,16 +40,24 @@ SceneBuilder::SceneBuilder(uint64_t width, uint64_t height, uint64_t depth)
 
 	Mesh worldFloor = GenMeshCube(width, 1.0f, depth);
 
-
-	for (int i = 0; i < worldFloor.vertexCount; i++)
-	{
-		worldFloor.texcoords[i * 2 + 0] *= width;
-		worldFloor.texcoords[i * 2 + 1] *= depth;
-	}
+	 for (size_t i = 0; i < worldFloor.vertexCount; i++)
+	 {
+	 	if (worldFloor.normals[i * 3 + 1] > 0.5f)//if up or down
+	 	{
+	 		worldFloor.texcoords[i * 2] *= width;
+	 		worldFloor.texcoords[i * 2 + 1] *= depth;
+	 	}
+	 	else
+	 	{
+	 		worldFloor.texcoords[i * 2] *= width; //it doesn't need extra repetition on height because its 1 tall
+	 	}
+	 }
 
 	SetTextureWrap(m_terrainTextures[0], TEXTURE_WRAP_REPEAT);
+	UpdateMeshBuffer(worldFloor, 1, worldFloor.texcoords, sizeof(float) * worldFloor.vertexCount * 2, 0);
 
 	m_worldFloor = LoadModelFromMesh(worldFloor);
+
 	m_worldFloor.materials[0].maps[MATERIAL_MAP_DIFFUSE].texture = m_terrainTextures[0];
 
 	m_model = LoadModelFromMesh({});

@@ -25,6 +25,13 @@ SceneBuilder::SceneBuilder(uint32_t width, uint32_t height, uint32_t depth)
 	m_depth = depth;
 
 	Mesh worldFloor = GenMeshCube(width, 1.0f, depth);
+
+	if (!m_terrainTextures.contains("Ordanium"))
+	{
+		TraceLog(LOG_FATAL, "WORLD HAS NO FLOOR, CANNOT CONTINUE (please ensure the Ordanium texture exists!)");
+		exit(EXIT_FAILURE);
+	}
+
 	Texture2D& ordanium = m_terrainTextures["Ordanium"];
 
 

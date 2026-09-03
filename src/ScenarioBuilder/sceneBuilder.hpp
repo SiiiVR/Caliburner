@@ -7,6 +7,7 @@
 #include "scene.hpp"
 #include <raylib.h>
 #include <list>
+#include <unordered_map>
 
 using std::list;
 
@@ -21,8 +22,7 @@ public:
 private:
 	Model m_model{};
 	Model m_worldFloor{};
-	Texture2D* m_terrainTextures;
-	size_t m_terrainTextures_count;
+	std::unordered_map<std::string,Texture2D> m_terrainTextures;
 	size_t* m_terrainPoints;
 
 	uint64_t m_width;

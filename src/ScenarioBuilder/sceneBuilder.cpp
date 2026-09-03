@@ -9,26 +9,12 @@ namespace fs = std::filesystem;
 
 SceneBuilder::SceneBuilder(uint32_t width, uint32_t height, uint32_t depth)
 {
-	size_t counter = 0;
-
 	for (const auto& entry : fs::recursive_directory_iterator("assets/sprites/terrain/"))
 	{
 		const auto& path = entry.path();
 		if (is_regular_file(path) && path.extension() == ".png")
 		{
-			counter++;
-		}
-	}
-	m_terrainTextures = new Texture2D[counter];
-	m_terrainTextures_count = counter;
-
-	counter = 0;
-	for (const auto& entry : fs::recursive_directory_iterator("assets/sprites/terrain/"))
-	{
-		const auto& path = entry.path();
-		if (is_regular_file(path) && path.extension() == ".png")
-		{
-			m_terrainTextures[counter++] = LoadTexture(path.c_str());
+			m_terrainTextures[path.stem()] = LoadTexture(path.c_str());
 		}
 	}
 
@@ -39,6 +25,8 @@ SceneBuilder::SceneBuilder(uint32_t width, uint32_t height, uint32_t depth)
 	m_depth = depth;
 
 	Mesh worldFloor = GenMeshCube(width, 1.0f, depth);
+	Texture2D& ordanium = m_terrainTextures["Ordanium"];
+
 
 	 for (size_t i = 0; i < worldFloor.vertexCount; i++)
 	 {
@@ -53,12 +41,12 @@ SceneBuilder::SceneBuilder(uint32_t width, uint32_t height, uint32_t depth)
 	 	}
 	 }
 
-	SetTextureWrap(m_terrainTextures[0], TEXTURE_WRAP_REPEAT);
+	SetTextureWrap(ordanium, TEXTURE_WRAP_REPEAT);
 	UpdateMeshBuffer(worldFloor, 1, worldFloor.texcoords, sizeof(float) * worldFloor.vertexCount * 2, 0);
 
 	m_worldFloor = LoadModelFromMesh(worldFloor);
 
-	m_worldFloor.materials[0].maps[MATERIAL_MAP_DIFFUSE].texture = m_terrainTextures[0];
+	m_worldFloor.materials[0].maps[MATERIAL_MAP_DIFFUSE].texture = ordanium;
 
 	m_model = LoadModelFromMesh({});
 
@@ -66,9 +54,9 @@ SceneBuilder::SceneBuilder(uint32_t width, uint32_t height, uint32_t depth)
 
 SceneBuilder::~SceneBuilder()
 {
-	for (size_t i = 0; i < m_terrainTextures_count; i++)
+	for (std::pair<const std::string, Texture>& stringTexture : m_terrainTextures)
 	{
-		UnloadTexture(m_terrainTextures[i]);
+		UnloadTexture(stringTexture.second);
 	}
 	UnloadModel(m_model);
 	delete m_terrainPoints;

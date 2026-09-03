@@ -34,7 +34,6 @@ SceneBuilder::SceneBuilder(uint32_t width, uint32_t height, uint32_t depth)
 
 	Texture2D& ordanium = m_terrainTextures["Ordanium"];
 
-
 	 for (size_t i = 0; i < worldFloor.vertexCount; i++)
 	 {
 	 	if (worldFloor.normals[i * 3 + 1] > 0.5f)//if up or down
@@ -66,7 +65,9 @@ SceneBuilder::~SceneBuilder()
 		UnloadTexture(stringTexture.second);
 	}
 	UnloadModel(m_model);
-	delete m_terrainPoints;
+	UnloadModel(m_worldFloor);
+
+	delete[] m_terrainPoints;
 }
 
 void SceneBuilder::Render()
